@@ -1,8 +1,9 @@
 import React from 'react';
 
-import useTodoState from './hooks/useTodosState';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
+
+import { TodosProvider } from './contexts/todos.context';
 
 // Material UI elements
 import AppBar from '@material-ui/core/AppBar';
@@ -14,34 +15,34 @@ import Paper from '@material-ui/core/Paper';
 // Styles
 const bg = {
   minHeight: '100vh',
-  backgroundColor: '#fafafa'
+  backgroundColor: '#fafafa',
 };
 
 const navbar = {
   position: 'static',
   color: 'primary',
   backgroundColor: '#03a9f4',
-  height: '64px'
+  height: '64px',
 };
 
 const title = {
-  color: 'inherit'
+  color: 'inherit',
 };
 
 const main = {
   justifyContent: 'center',
-  marginTop: '2rem'
+  marginTop: '2rem',
 };
 // End Styles
 
 const TodoApp = () => {
   // const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]');
-  const initialTodos = [{ id: 1, task: 'Do something..', completed: false }];
+  // const initialTodos = [{ id: 1, task: 'Do something..', completed: false }];
 
   // CRUD Operations from hooks
-  const { todos, addTodo, deleteTodo, toggleTodo, editTodo } = useTodoState(
-    initialTodos
-  );
+  // const { todos, addTodo, deleteTodo, toggleTodo, editTodo } = useTodoState(
+  //   initialTodos
+  // );
 
   // useEffect(() => {
   //   window.localStorage.setItem('todos', JSON.stringify(todos));
@@ -56,13 +57,10 @@ const TodoApp = () => {
       </AppBar>
       <Grid container style={main}>
         <Grid item xs={11} md={8} lg={4}>
-          <TodoForm addTodo={addTodo} />
-          <TodoList
-            todos={todos}
-            deleteTodo={deleteTodo}
-            toggleTodo={toggleTodo}
-            editTodo={editTodo}
-          />
+          <TodosProvider>
+            <TodoForm />
+            <TodoList />
+          </TodosProvider>
         </Grid>
       </Grid>
     </Paper>
