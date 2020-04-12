@@ -22,11 +22,12 @@ const navbar = {
   position: 'static',
   color: 'primary',
   backgroundColor: '#03a9f4',
-  height: '64px',
 };
 
 const title = {
   color: 'inherit',
+  fontSize: '2rem',
+  fontWeight: 800,
 };
 
 const main = {
@@ -36,23 +37,11 @@ const main = {
 // End Styles
 
 const TodoApp = () => {
-  // const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]');
-  // const initialTodos = [{ id: 1, task: 'Do something..', completed: false }];
-
-  // CRUD Operations from hooks
-  // const { todos, addTodo, deleteTodo, toggleTodo, editTodo } = useTodoState(
-  //   initialTodos
-  // );
-
-  // useEffect(() => {
-  //   window.localStorage.setItem('todos', JSON.stringify(todos));
-  // }, [todos]);
-
   return (
     <Paper style={bg}>
       <AppBar style={navbar}>
         <ToolBar>
-          <Typography style={title}>Todos with Hooks</Typography>
+          <Typography style={title}>DoTi</Typography>
         </ToolBar>
       </AppBar>
       <Grid container style={main}>
