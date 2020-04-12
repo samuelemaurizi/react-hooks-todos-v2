@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import useInputState from './hooks/useInputState';
-import { TodosContext } from './contexts/todos.context';
+import { DispatchContext } from './contexts/todos.context';
 
 import TextField from '@material-ui/core/TextField';
 
@@ -12,14 +12,14 @@ const formStyle = {
 
 const EditTodo = ({ id, task, toggleEditForm }) => {
   const [value, handleChange, reset] = useInputState(task);
-  const { editTodo } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
 
   return (
     <form
       style={formStyle}
       onSubmit={(e) => {
         e.preventDefault();
-        editTodo(id, value);
+        dispatch({ type: 'EDIT', id: id, newTask: value });
         reset();
         toggleEditForm();
       }}

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import useInputState from './hooks/useInputState';
-import { TodosContext } from './contexts/todos.context';
+import { DispatchContext } from './contexts/todos.context';
 
 // Material UI Components
 import Paper from '@material-ui/core/Paper';
@@ -14,14 +14,14 @@ const formContainer = {
 
 const TodoForm = () => {
   const [value, handleChange, reset] = useInputState('');
-  const { addTodo } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
 
   return (
     <Paper style={formContainer}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addTodo(value);
+          dispatch({ type: 'ADD', task: value });
           reset();
         }}
       >
